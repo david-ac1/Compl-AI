@@ -1,6 +1,52 @@
-import React from "react";
+'use client';
 
-export default function GlobalHealthWidget() {
+import React, { useState } from "react";
+import { GlobalStats } from "@/lib/types";
+import { getGlobalStats } from "@/app/actions";
+
+// Helper to format date relative
+function timeAgo(date: Date | string) {
+    if (!date) return 'Never';
+    const d = new Date(date);
+    const now = new Date();
+    const seconds = Math.floor((now.getTime() - d.getTime()) / 1000);
+    if (seconds < 60) return `${seconds}s ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    return `${hours}h ago`;
+}
+
+interface Props {
+    stats?: GlobalStats;
+}
+
+export default function GlobalHealthWidget({ stats: initialStats }: Props) {
+    const [stats, setStats] = useState<GlobalStats | undefined>(initialStats);
+    const [loading, setLoading] = useState(false);
+
+    const handleRefresh = async () => {
+        setLoading(true);
+        try {
+            const newStats = await getGlobalStats();
+            setStats(newStats);
+        } catch (error) {
+            console.error("Failed to refresh stats", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Default fallback values if stats aren't loaded yet
+    const score = stats?.complianceScore ?? 89;
+    const scans = stats?.scansPerformed ?? 0;
+    const lastSync = stats?.lastSync ?? new Date();
+
+    // Calculate strokeDashoffset for SVG circle (circumference approx 264)
+    // 100% = 0 offset, 0% = 264 offset
+    const circumference = 263.89;
+    const offset = circumference - (score / 100) * circumference;
+
     return (
         <div className="max-w-4xl w-full bg-white border border-border-gray rounded-xl shadow-xl overflow-hidden font-display">
             <div className="p-6 border-b border-border-gray flex items-center justify-between bg-white">
@@ -10,10 +56,10 @@ export default function GlobalHealthWidget() {
                     </div>
                     <div>
                         <h1 className="text-xl font-bold tracking-tight text-royal-blue">
-                            Global Health &amp; Compliance
+                            Compl-AI
                         </h1>
                         <p className="text-xs uppercase tracking-widest text-charcoal-gray font-semibold">
-                            Sovereign Dev AI Agent
+                            Autonomous Compliance Agent
                         </p>
                     </div>
                 </div>
@@ -23,10 +69,14 @@ export default function GlobalHealthWidget() {
                             Last Sync
                         </span>
                         <span className="text-xs font-medium text-charcoal-gray">
-                            2 mins ago
+                            {timeAgo(lastSync)}
                         </span>
                     </div>
-                    <button className="p-2 hover:bg-slate-100 rounded-full transition-colors">
+                    <button
+                        onClick={handleRefresh}
+                        className={`p-2 hover:bg-slate-100 rounded-full transition-all ${loading ? 'animate-spin text-royal-blue' : 'text-royal-blue'}`}
+                        disabled={loading}
+                    >
                         <span className="material-icons text-royal-blue">refresh</span>
                     </button>
                 </div>
@@ -44,7 +94,7 @@ export default function GlobalHealthWidget() {
                                 strokeWidth="8"
                             ></circle>
                             <circle
-                                className="text-royal-blue stroke-current transition-all duration-350 ease-out origin-center -rotate-90"
+                                className="text-royal-blue stroke-current transition-all duration-1000 ease-out origin-center -rotate-90"
                                 cx="50"
                                 cy="50"
                                 fill="transparent"
@@ -52,13 +102,13 @@ export default function GlobalHealthWidget() {
                                 strokeLinecap="round"
                                 strokeWidth="8"
                                 style={{
-                                    strokeDasharray: 263.89,
-                                    strokeDashoffset: 29.03,
+                                    strokeDasharray: circumference,
+                                    strokeDashoffset: offset,
                                 }}
                             ></circle>
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <span className="text-4xl font-bold text-royal-blue">89%</span>
+                            <span className="text-4xl font-bold text-royal-blue">{score}%</span>
                             <span className="text-[10px] font-semibold text-charcoal-gray uppercase tracking-tighter">
                                 Compliant
                             </span>
@@ -66,10 +116,10 @@ export default function GlobalHealthWidget() {
                     </div>
                     <div className="space-y-1">
                         <h3 className="text-lg font-semibold text-charcoal-gray">
-                            Healthy Status
+                            {score >= 90 ? 'Excellent Status' : score >= 70 ? 'Good Status' : 'At Risk'}
                         </h3>
                         <p className="text-sm text-charcoal-gray/70">
-                            12 of 14 regions meeting target sovereign standards.
+                            {scans} scans performed across active regions.
                         </p>
                     </div>
                     <button className="mt-6 px-6 py-2 bg-royal-blue text-white text-sm font-semibold rounded-lg hover:bg-royal-blue/90 transition-all shadow-md cursor-pointer">

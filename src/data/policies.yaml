@@ -1,0 +1,25 @@
+policies:
+  - id: "popia-sovereignty"
+    name: "POPIA Data Sovereignty"
+    rules:
+      - id: "popia-data-residency"
+        name: "Cross-Border Data Transfer (Section 57)"
+        description: "Personal Information transferred outside South Africa requires prior authorization unless the recipient is subject to binding corporate rules or similar laws."
+        riskLevel: "critical"
+        triggerPatterns:
+          - 'region\s*=\s*["''](?!af-south-1)[a-z0-9-]+["'']' # Matches any region NOT af-south-1
+        remediation: "Deploy to 'af-south-1' (Cape Town) or implement Standard Contractual Clauses (SCCs)."
+        referenceUrl: "https://popia.co.za/section-57-transfer-of-personal-information-outside-republic/"
+
+  - id: "aws-encryption"
+    name: "Standard Encryption Requirements"
+    rules:
+      - id: "rds-encryption"
+        name: "Database Encryption at Rest"
+        description: "All databases must have storage encryption enabled."
+        riskLevel: "warning"
+        triggerPatterns:
+          - 'resource\s+"aws_db_instance"'
+        condition: "storage_encrypted != true" # Logical check (mock)
+        remediation: "Set 'storage_encrypted = true' in your Terraform resource."
+        referenceUrl: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html"

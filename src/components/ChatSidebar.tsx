@@ -10,7 +10,7 @@ export default function ChatSidebar() {
                     </div>
                     <div>
                         <h1 className="font-semibold text-sm tracking-tight text-gray-900">
-                            Sovereign Dev Duo
+                            Compl-AI Assistant
                         </h1>
                         <div className="flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
@@ -53,13 +53,13 @@ export default function ChatSidebar() {
                             </span>
                         </div>
                         <span className="text-[11px] font-bold uppercase tracking-widest text-sovereign-blue">
-                            Sovereign AI
+                            Compl-AI
                         </span>
                     </div>
                     <div className="bg-white border border-gray-200 p-4 rounded-xl rounded-tl-none shadow-sm w-full">
                         <p className="text-sm leading-relaxed mb-4">
                             <span className="font-semibold text-sovereign-blue">
-                                Sovereign Dev initialized.
+                                Compl-AI initialized.
                             </span>{" "}
                             I have loaded the regulatory frameworks for the Global Mobility &amp;
                             Hub Triangle.
