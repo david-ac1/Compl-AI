@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#002366",
+                        "sovereign-blue": "#002366",
+                        "charcoal-gray": "#333333",
+                        "clean-white": "#FFFFFF",
+                        "border-gray": "#E5E7EB",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<title>Sovereign Dev Duo Chat Sidebar</title>
+<style type="text/tailwindcss">
+        @layer base {
+            body { font-family: 'Public Sans', sans-serif; }
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333333; border-radius: 10px; }
+        .map-pulse {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #002366;
+            border-radius: 50%;
+            box-shadow: 0 0 0 rgba(0, 35, 102, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#F9FAFB] text-charcoal-gray min-h-screen flex justify-end">
+<aside class="w-[400px] h-screen bg-clean-white border-l border-gray-200 flex flex-col shadow-xl">
+<header class="p-4 border-b border-gray-200 flex items-center justify-between bg-clean-white sticky top-0 z-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-sovereign-blue flex items-center justify-center">
+<span class="material-icons text-white text-lg">security</span>
+</div>
+<div>
+<h1 class="font-semibold text-sm tracking-tight text-gray-900">Sovereign Dev Duo</h1>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+<span class="text-[10px] uppercase font-bold tracking-wider text-emerald-600">Active Agent</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 hover:bg-gray-100 rounded-md transition-colors">
+<span class="material-icons text-xl text-charcoal-gray">settings</span>
+</button>
+<button class="p-1.5 hover:bg-gray-100 rounded-md transition-colors">
+<span class="material-icons text-xl text-charcoal-gray">close</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-6">
+<div class="flex flex-col items-end gap-2 max-w-[90%] ml-auto">
+<div class="bg-sovereign-blue text-white p-3 rounded-xl rounded-tr-none shadow-sm">
+<p class="text-sm leading-relaxed">
+                        Monitor this project across our core deployment hubs: USA, South Africa, Nigeria, France, Germany, Portugal, Brazil, and Chile.
+                    </p>
+</div>
+<span class="text-[10px] text-charcoal-gray/60 font-medium px-1">10:24 AM</span>
+</div>
+<div class="flex flex-col items-start gap-3 max-w-[95%]">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-sovereign-blue/10 flex items-center justify-center">
+<span class="material-icons text-xs text-sovereign-blue">auto_awesome</span>
+</div>
+<span class="text-[11px] font-bold uppercase tracking-widest text-sovereign-blue">Sovereign AI</span>
+</div>
+<div class="bg-white border border-gray-200 p-4 rounded-xl rounded-tl-none shadow-sm w-full">
+<p class="text-sm leading-relaxed mb-4">
+<span class="font-semibold text-sovereign-blue">Sovereign Dev initialized.</span> I have loaded the regulatory frameworks for the Global Mobility &amp; Hub Triangle.
+                    </p>
+<div class="relative w-full aspect-video bg-gray-50 rounded-lg overflow-hidden border border-gray-200 mb-4">
+<img alt="World Map Light" class="w-full h-full object-cover opacity-60 grayscale brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFAoqaiAKyQcQt4s_cKqPXVn_F6cSYr1EwwegYdINDmW5UaWCJe_ktiS7_a48J2tMXqNbwzugOuPpezDY5NEPw_HIP7gLWfpcPGLL0kfjjP7qX7sZGhL9qFfm2JdKKK-KPoJzbilAdEG8vXtr4cGIWC2nI7CQtg49HMd_DC3Qi3Ggqgi_3JrFIVTMI0Epi1SUh7yNi65gODalizdxyanKLiT1G0LgySEDsM4CXdncSqDIArzVIXHfVPcQU5amei4donuJERktNbBF9"/>
+<div class="absolute top-[35%] left-[22%]">
+<div class="map-pulse animate-ping"></div>
+<div class="map-pulse"></div>
+<div class="absolute top-3 left-0 bg-white shadow-md border border-gray-100 text-[9px] px-1.5 py-0.5 rounded text-charcoal-gray whitespace-nowrap font-medium">N. Virginia (US-East)</div>
+</div>
+<div class="absolute top-[28%] left-[48%]">
+<div class="map-pulse animate-ping"></div>
+<div class="map-pulse"></div>
+<div class="absolute top-3 left-0 bg-white shadow-md border border-gray-100 text-[9px] px-1.5 py-0.5 rounded text-charcoal-gray whitespace-nowrap font-medium">Paris (EU-West)</div>
+</div>
+<div class="absolute top-[75%] left-[53%]">
+<div class="map-pulse animate-ping"></div>
+<div class="map-pulse"></div>
+<div class="absolute top-3 left-0 bg-white shadow-md border border-gray-100 text-[9px] px-1.5 py-0.5 rounded text-charcoal-gray whitespace-nowrap font-medium">Cape Town (AF-South)</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="flex items-center gap-2 p-2 bg-gray-50 rounded border border-gray-100">
+<span class="material-icons text-sovereign-blue text-xs">gavel</span>
+<span class="text-[11px] font-medium text-charcoal-gray">GDPR Compliance</span>
+<span class="material-icons text-emerald-600 text-[10px] ml-auto">check_circle</span>
+</div>
+<div class="flex items-center gap-2 p-2 bg-gray-50 rounded border border-gray-100">
+<span class="material-icons text-sovereign-blue text-xs">verified_user</span>
+<span class="text-[11px] font-medium text-charcoal-gray">NDPR (Nigeria)</span>
+<span class="material-icons text-emerald-600 text-[10px] ml-auto">check_circle</span>
+</div>
+<div class="flex items-center gap-2 p-2 bg-gray-50 rounded border border-gray-100">
+<span class="material-icons text-sovereign-blue text-xs">policy</span>
+<span class="text-[11px] font-medium text-charcoal-gray">LGPD (Brazil)</span>
+<span class="material-icons text-emerald-600 text-[10px] ml-auto">check_circle</span>
+</div>
+<div class="flex items-center gap-2 p-2 bg-gray-50 rounded border border-gray-100">
+<span class="material-icons text-amber-600 text-xs">sync</span>
+<span class="text-[11px] font-medium text-charcoal-gray">Ley N° 19.628</span>
+<span class="material-icons text-amber-600 text-[10px] ml-auto">pending</span>
+</div>
+</div>
+</div>
+<span class="text-[10px] text-charcoal-gray/60 font-medium px-1">10:25 AM</span>
+</div>
+<div class="flex items-center gap-2 px-2">
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 bg-sovereign-blue/40 rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-sovereign-blue/40 rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-sovereign-blue/40 rounded-full"></span>
+</div>
+<span class="text-[10px] text-charcoal-gray/50 italic">Analyzing latency across hubs...</span>
+</div>
+</main>
+<footer class="p-4 bg-clean-white border-t border-gray-200">
+<div class="relative">
+<textarea class="w-full bg-gray-50 border border-gray-200 rounded-lg text-sm p-3 focus:ring-1 focus:ring-sovereign-blue focus:border-sovereign-blue text-charcoal-gray placeholder-gray-400 resize-none pr-10" placeholder="Ask Sovereign Dev anything..." rows="3"></textarea>
+<div class="absolute bottom-3 right-3 flex items-center gap-2">
+<button class="p-1 hover:text-sovereign-blue transition-colors">
+<span class="material-icons text-charcoal-gray/50 text-lg">attach_file</span>
+</button>
+<button class="w-8 h-8 bg-sovereign-blue rounded-lg flex items-center justify-center text-white hover:bg-opacity-90 transition-all shadow-md">
+<span class="material-icons text-sm">send</span>
+</button>
+</div>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex gap-2">
+<button class="px-2 py-1 bg-gray-100 rounded text-[10px] font-semibold text-charcoal-gray border border-transparent hover:border-sovereign-blue/30 transition-all uppercase tracking-wider">
+                        HUB REPORT
+                    </button>
+<button class="px-2 py-1 bg-gray-100 rounded text-[10px] font-semibold text-charcoal-gray border border-transparent hover:border-sovereign-blue/30 transition-all uppercase tracking-wider">
+                        COMPLIANCE AUDIT
+                    </button>
+</div>
+<span class="text-[10px] text-charcoal-gray/40">v4.2.1-sovereign</span>
+</div>
+</footer>
+</aside>
+<div class="flex-1 bg-[#F3F4F6] p-8 hidden lg:flex flex-col gap-6">
+<nav class="flex items-center gap-4 text-sm text-charcoal-gray/60">
+<span>Projects</span>
+<span class="material-icons text-xs">chevron_right</span>
+<span>Infrastructure</span>
+<span class="material-icons text-xs">chevron_right</span>
+<span class="text-charcoal-gray font-semibold">Global-Deployment-Mesh</span>
+</nav>
+<div class="grid grid-cols-3 gap-6">
+<div class="h-32 rounded-xl bg-clean-white border border-gray-200 p-4 shadow-sm">
+<div class="text-xs font-bold text-charcoal-gray/40 uppercase tracking-widest mb-2">Total Clusters</div>
+<div class="text-3xl font-bold text-charcoal-gray">12</div>
+</div>
+<div class="h-32 rounded-xl bg-clean-white border border-gray-200 p-4 shadow-sm">
+<div class="text-xs font-bold text-charcoal-gray/40 uppercase tracking-widest mb-2">Active Regions</div>
+<div class="text-3xl font-bold text-emerald-600">8</div>
+</div>
+<div class="h-32 rounded-xl bg-clean-white border border-gray-200 p-4 shadow-sm">
+<div class="text-xs font-bold text-charcoal-gray/40 uppercase tracking-widest mb-2">Security Score</div>
+<div class="text-3xl font-bold text-sovereign-blue">98%</div>
+</div>
+</div>
+<div class="flex-1 rounded-xl bg-clean-white border border-gray-200 overflow-hidden shadow-sm">
+<div class="p-4 border-b border-gray-100 flex justify-between items-center">
+<h3 class="font-semibold text-charcoal-gray">Infrastructure Logs</h3>
+<span class="text-xs text-sovereign-blue font-medium cursor-pointer">View Full Dashboard</span>
+</div>
+<div class="p-4 space-y-3">
+<div class="h-4 w-3/4 bg-gray-50 rounded"></div>
+<div class="h-4 w-1/2 bg-gray-50 rounded"></div>
+<div class="h-4 w-2/3 bg-gray-50 rounded"></div>
+<div class="h-4 w-4/5 bg-gray-50 rounded"></div>
+</div>
+</div>
+</div>
+
+</body></html>

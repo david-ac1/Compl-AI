@@ -1,0 +1,233 @@
+import React from "react";
+
+export default function InlineSentinel() {
+    return (
+        <div className="w-full max-w-4xl space-y-4 font-display">
+            <div className="bg-white border border-[var(--border-color)] rounded-lg overflow-hidden shadow-sm">
+                <div className="flex items-center gap-2 px-4 py-2 bg-[#F6F8FA] border-b border-[var(--border-color)]">
+                    <span className="text-xs font-mono text-slate-500">
+                        terraform/main.tf
+                    </span>
+                </div>
+                <div className="p-4 font-mono text-sm leading-relaxed overflow-x-auto text-slate-600">
+                    <div className="flex">
+                        <span className="w-8 text-slate-400 shrink-0 select-none">142</span>
+                        <span>resource "aws_db_instance" "production" {"{"}</span>
+                    </div>
+                    <div className="flex">
+                        <span className="w-8 text-slate-400 shrink-0 select-none">143</span>
+                        <span className="ml-4">identifier = "sentinel-db-prod"</span>
+                    </div>
+                    <div className="flex bg-red-50 text-red-700">
+                        <span className="w-8 text-red-300 shrink-0 select-none">
+                            144 -
+                        </span>
+                        <span className="ml-4">region = "us-east-1"</span>
+                    </div>
+                    <div className="flex bg-green-50 text-green-700">
+                        <span className="w-8 text-green-300 shrink-0 select-none">
+                            145 +
+                        </span>
+                        <span className="ml-4">region = "af-south-1"</span>
+                    </div>
+                    <div className="flex">
+                        <span className="w-8 text-slate-400 shrink-0 select-none">146</span>
+                        <span className="ml-4">engine = "postgres"</span>
+                    </div>
+                </div>
+                <div className="bg-white border-t border-[var(--border-color)]">
+                    <div className="m-4 rounded-lg border border-[var(--border-color)] shadow-sm overflow-hidden bg-white">
+                        <div className="bg-white px-4 py-3 flex items-center justify-between border-b border-[var(--border-color)]">
+                            <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded bg-royal flex items-center justify-center shadow-sm">
+                                    <span className="material-icons text-white text-lg">
+                                        security
+                                    </span>
+                                </div>
+                                <h3 className="font-bold text-sm tracking-tight text-charcoal flex items-center gap-2">
+                                    <span className="text-royal text-base material-icons">
+                                        warning
+                                    </span>{" "}
+                                    Sovereignty &amp; Growth Analysis
+                                </h3>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded border border-royal text-royal uppercase">
+                                    Sentinel AI
+                                </span>
+                                <button className="text-slate-400 hover:text-charcoal transition-colors">
+                                    <span className="material-icons text-sm">more_vert</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="p-0">
+                            <div className="p-5 border-b border-[#F0F0F0]">
+                                <div className="flex gap-4">
+                                    <div className="shrink-0 pt-1">
+                                        <span className="material-icons text-red-600">gavel</span>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <h4 className="text-xs font-bold text-charcoal uppercase tracking-wider">
+                                            The Bodyguard (Risk)
+                                        </h4>
+                                        <p className="text-sm text-slate-custom leading-relaxed">
+                                            Moving data to{" "}
+                                            <span className="text-charcoal font-mono bg-slate-100 px-1 rounded">
+                                                af-south-1
+                                            </span>{" "}
+                                            triggers mandatory{" "}
+                                            <span className="underline decoration-red-200">
+                                                POPIA compliance
+                                            </span>{" "}
+                                            requirements. Your current configuration lacks the
+                                            required{" "}
+                                            <span className="font-semibold text-charcoal">
+                                                Section 57
+                                            </span>{" "}
+                                            notification for cross-border personal information
+                                            transfers.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="p-5 bg-white">
+                                <div className="flex gap-4">
+                                    <div className="shrink-0 pt-1">
+                                        <span className="material-icons text-royal">
+                                            tips_and_updates
+                                        </span>
+                                    </div>
+                                    <div className="w-full space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <h4 className="text-xs font-bold text-charcoal uppercase tracking-wider">
+                                                The Consultant (Opportunity)
+                                            </h4>
+                                            <span className="text-[10px] text-slate-custom italic">
+                                                Strategic Advantage Analysis
+                                            </span>
+                                        </div>
+                                        <details
+                                            className="group bg-[#F8FAFF] rounded-lg border border-[#D0DBF2] transition-all"
+                                            open
+                                        >
+                                            <summary className="list-none p-3 cursor-pointer flex items-center justify-between hover:bg-[#F0F4FF]">
+                                                <span className="text-xs font-semibold text-charcoal">
+                                                    AWS Cape Town Infrastructure Benefits
+                                                </span>
+                                                <span className="material-icons text-sm text-royal group-open:rotate-180 transition-transform">
+                                                    expand_more
+                                                </span>
+                                            </summary>
+                                            <div className="px-3 pb-3 pt-1 space-y-3">
+                                                <div className="flex items-start gap-3">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 shrink-0"></div>
+                                                    <p className="text-xs text-slate-custom">
+                                                        Deployment in AWS Cape Town utilizes{" "}
+                                                        <span className="text-green-700 font-semibold">
+                                                            100% renewable energy
+                                                        </span>{" "}
+                                                        offsetting, contributing to your team&apos;s ESG
+                                                        quarterly targets.
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-center gap-4 bg-white p-3 rounded-md border border-[#D0DBF2]">
+                                                    <div className="flex flex-col">
+                                                        <span className="text-[10px] uppercase text-slate-custom font-bold">
+                                                            Latency Reduction
+                                                        </span>
+                                                        <div className="flex items-baseline gap-1">
+                                                            <span className="text-xl font-bold text-royal">
+                                                                -40%
+                                                            </span>
+                                                            <span className="text-[10px] text-green-600 font-mono">
+                                                                Sub-Saharan
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="h-8 w-px bg-[#D0DBF2]"></div>
+                                                    <div className="flex flex-col">
+                                                        <span className="text-[10px] uppercase text-slate-custom font-bold">
+                                                            Node Distance
+                                                        </span>
+                                                        <div className="flex items-baseline gap-1">
+                                                            <span className="text-xl font-bold text-charcoal">
+                                                                12ms
+                                                            </span>
+                                                            <span className="text-[10px] text-slate-custom">
+                                                                Avg JHB/CPT
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="px-5 py-4 bg-[#F6F8FA] flex flex-wrap items-center gap-3 border-t border-[var(--border-color)]">
+                            <button className="bg-royal hover:bg-[#002B82] text-white text-xs font-bold py-2.5 px-5 rounded flex items-center gap-2 transition-all shadow-sm active:scale-95">
+                                <span className="material-icons text-sm">terminal</span>
+                                /update_popia_config
+                            </button>
+                            <button className="bg-white hover:bg-slate-50 text-charcoal text-xs font-semibold py-2.5 px-5 rounded border border-[var(--border-color)] transition-all flex items-center gap-2 shadow-sm">
+                                <span className="material-icons text-sm text-royal">
+                                    flight_takeoff
+                                </span>
+                                View South Africa Visa/Mobility Perks
+                            </button>
+                            <div className="flex-grow"></div>
+                            <button className="text-slate-custom hover:text-charcoal text-xs font-medium">
+                                Dismiss
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex items-center justify-between px-2">
+                <div className="flex items-center gap-4">
+                    <div className="flex -space-x-2">
+                        <img
+                            alt="Reviewer"
+                            className="w-6 h-6 rounded-full border-2 border-white"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuChqk8MHyuqlrviXtWzmvYG0krEm1GrrmNNTZvVqrqPBCGmHF804uVoaH-Yefb2KFKkq8OH-FB0bSuEal38G-mD05dozkVA9qKPN_hr4jjjy8rNmTZqJf-lYffk31jr_r37p4IkeKRCzUT0Cdz55tCurFPm41t6XyB0HwX82cIteTLYFUAI8ZEcgQWo8AltTii_pIVlUmv7bb4DvMvjvh4dCvhf2tsxlD1EcuFDI0w-NsIAgsHIfvi6bt7nuS8YbiIMKel7laDMAX8R"
+                        />
+                        <img
+                            alt="Author"
+                            className="w-6 h-6 rounded-full border-2 border-white"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfU_2ph0CbT5WvB5Ln_Q1_F7l57_paO9ErhOg510BDiT431Zak79aOO-1ByMpcPkCp-31MHwlQTFJd-E2VbfnMQQbFZF78KMFdLiRlG9fvNsI5yym7eU8JURLPV1ywpMLu4v19OXFqlIwbMhdR7ftq1w4pS76ZJcrSibs-JmGEXHAT1zDfG1ETzIg6J8NB5Cj8IEmNqVSVX-AO49tm8TTjMYfly3ZsMRzwlu5aVoXPzwRMrhan6iuCV7usrD8H2jTc47k-oeoCq6-W"
+                        />
+                    </div>
+                    <p className="text-[11px] text-slate-custom">
+                        <span className="font-bold text-charcoal">@sovereign-sentinel</span>{" "}
+                        generated analysis <span className="italic">2 minutes ago</span>
+                    </p>
+                </div>
+                <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                    <span className="text-[11px] text-slate-custom font-mono tracking-wider uppercase">
+                        Agent Status: Active
+                    </span>
+                </div>
+            </div>
+            <div className="bg-white border border-[var(--border-color)] rounded-lg p-3 flex items-center gap-4 max-w-xs shadow-sm">
+                <div className="relative w-14 h-14 rounded overflow-hidden shrink-0">
+                    <img
+                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV4zmKWjB_fsFEfN7Mz2nqU3k3UAh0IgVE7FHvfb7vhljivqrFmVXDSHhu-AR2QzYX-_xTe_WMXmOC7vgJsbV3C2M_7h9t4X26T2vAo251IP87oAz2AXwoUvojIgChNUBiCR6xLZXb4kdEqblqv8TlNvig1ZK4YR4YDpc-V2J67zD7cFTO2SzTeI-JyR-vZuatMEK9jF2AV_BjMQ82zFqJGoeWA5uFcBmvFJ5JUe17F1HsJ2ENgWDefZvTB95aZ4aX-q0yTHnE_BxX"
+                    />
+                    <div className="absolute inset-0 bg-royal/10"></div>
+                </div>
+                <div>
+                    <h5 className="text-[10px] font-bold text-royal uppercase tracking-widest">
+                        Active Region
+                    </h5>
+                    <p className="text-xs font-bold text-charcoal">
+                        Cape Town, South Africa
+                    </p>
+                    <p className="text-[10px] text-slate-custom">AWS af-south-1</p>
+                </div>
+            </div>
+        </div>
+    );
+}
