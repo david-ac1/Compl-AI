@@ -46,16 +46,20 @@ export async function POST(req: NextRequest) {
         console.log(`Received Webhook for MR !${mr.iid}: ${mr.title}`);
 
         // 3. Get the Code Changes
-        // In PROD, we would do: const diff = await gitlabClient.getMRDiff(event.project.id, mr.iid);
-        // Here we check if the webhook sender provided a simulated diff, otherwise use a default fallback
-        // to prove the flow works even without a real GitLab instance connected.
-        const diff = event.changes?.diff || `
-resource "aws_db_instance" "default" {
-  # Fallback Diff if none provided in webhook
-  identifier = "prod-db"
-  region     = "us-east-1" 
-}
-`;
+        // In PROD, we fetch the real diff from GitLab using the Project ID and MR IID from the webhook event
+        console.log(`Fetching changes for Project ${event.project.id} MR !${mr.iid}...`);
+
+        // Dynamic import to avoid build complexity if file doesn't exist yet (though it should)
+        const { fetchMergeRequestChanges } = await import('@/lib/gitlab');
+
+        let diff = "";
+        try {
+            diff = await fetchMergeRequestChanges(event.project.id, mr.iid);
+            console.log("Fetched Diff Length:", diff.length);
+        } catch (e) {
+            console.error("Failed to fetch real diff, falling back to simulation payload if present", e);
+            diff = event.changes?.diff || "# Error fetching diff";
+        }
 
         // 4. Run Analysis (server action logic reused)
         // This triggers the Agent (Gemini or Regex) and updates the Store
