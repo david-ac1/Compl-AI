@@ -9,13 +9,13 @@ interface GitLabChange {
     deleted_file: boolean;
 }
 
-export async function fetchMergeRequestChanges(projectId: number, mrIid: number): Promise<string> {
-    const token = process.env.GITLAB_PAT;
+export async function fetchMergeRequestChanges(projectId: number, mrIid: number, token?: string): Promise<string> {
+    const resolvedToken = token ?? process.env.GITLAB_PAT;
 
-    if (!token) {
-        console.warn("GITLAB_PAT not set. Returning mock diff for simulation.");
+    if (!resolvedToken) {
+        console.warn("No GitLab token available. Returning mock diff.");
         return `resource "aws_db_instance" "production" {
-  # MOCK DIFF (Missing GITLAB_PAT)
+  # MOCK DIFF (no token provided)
   identifier = "mock-db"
   region     = "us-east-1"
 }`;
@@ -26,9 +26,9 @@ export async function fetchMergeRequestChanges(projectId: number, mrIid: number)
             `${GITLAB_API_URL}/projects/${projectId}/merge_requests/${mrIid}/changes`,
             {
                 headers: {
-                    "PRIVATE-TOKEN": token,
+                    "PRIVATE-TOKEN": resolvedToken,
                 },
-                cache: "no-store", // Ensure we always get fresh diffs
+                cache: "no-store",
             }
         );
 
@@ -40,9 +40,11 @@ export async function fetchMergeRequestChanges(projectId: number, mrIid: number)
         const data = await response.json();
         const changes: GitLabChange[] = data.changes;
 
-        // Combine all relevant diffs into one string for the Agent
-        const combinedDiff = changes
-            .filter(c => c.new_path.endsWith('.tf') || c.new_path.endsWith('main.tf')) // Focus on Terraform
+        // Combine all diffs — prefer .tf files, but fall back to all files if none
+        const tfChanges = changes.filter(c => c.new_path.endsWith('.tf'));
+        const relevantChanges = tfChanges.length > 0 ? tfChanges : changes;
+
+        const combinedDiff = relevantChanges
             .map(c => `File: ${c.new_path}\n${c.diff}`)
             .join('\n\n');
 

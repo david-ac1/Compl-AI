@@ -35,21 +35,26 @@ const options = {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-        'Content-Length': data.length,
-        'X-Gitlab-Token': 'demo-secret' // Matches the logic in route.ts if env var is set
+        'Content-Length': Buffer.byteLength(data),
+        'X-Gitlab-Token': 'demo-secret'
     }
 };
+
+console.log('Sending webhook to http://localhost:3000/api/webhook/gitlab ...');
 
 const req = https.request(options, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
     res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`);
-    });
+    let body = '';
+    res.on('data', (chunk) => { body += chunk; });
+    res.on('end', () => { console.log(`BODY: ${body}`); });
 });
 
 req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
+    console.error(`Error: ${e.message}`);
+    if (e.code === 'ECONNREFUSED') {
+        console.error('-> Server not reachable. Make sure "npm run dev" is running first.');
+    }
 });
 
 req.write(data);

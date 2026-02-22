@@ -45,24 +45,34 @@ export async function POST(req: NextRequest) {
         const mr = event.object_attributes;
         console.log(`Received Webhook for MR !${mr.iid}: ${mr.title}`);
 
-        // 3. Get the Code Changes
-        // In PROD, we fetch the real diff from GitLab using the Project ID and MR IID from the webhook event
+        // 3. Get the Code Changes using the token registered by the project owner
         console.log(`Fetching changes for Project ${event.project.id} MR !${mr.iid}...`);
 
-        // Dynamic import to avoid build complexity if file doesn't exist yet (though it should)
+        const { getTokenForProject } = await import('@/lib/token-store');
         const { fetchMergeRequestChanges } = await import('@/lib/gitlab');
 
+        const userToken = getTokenForProject(event.project.id);
+
         let diff = "";
-        try {
-            diff = await fetchMergeRequestChanges(event.project.id, mr.iid);
-            console.log("Fetched Diff Length:", diff.length);
-        } catch (e) {
-            console.error("Failed to fetch real diff, falling back to simulation payload if present", e);
-            diff = event.changes?.diff || "# Error fetching diff";
+        if (userToken) {
+            try {
+                diff = await fetchMergeRequestChanges(event.project.id, mr.iid, userToken);
+                console.log("Fetched real diff, length:", diff.length);
+            } catch (e) {
+                console.error("Failed to fetch real diff:", e);
+                diff = event.changes?.diff || "# Error fetching diff from GitLab";
+            }
+        } else {
+            // No token registered for this project — fall back to env PAT if set
+            console.warn(`No registered token for project ${event.project.id}. Falling back to GITLAB_PAT.`);
+            try {
+                diff = await fetchMergeRequestChanges(event.project.id, mr.iid);
+            } catch {
+                diff = event.changes?.diff || "# No token available. Register this project via /connect.";
+            }
         }
 
-        // 4. Run Analysis (server action logic reused)
-        // This triggers the Agent (Gemini or Regex) and updates the Store
+        // 4. Run Analysis — triggers the Agent and updates the Store
         const report = await runComplianceCheck(diff);
 
         console.log("Compliance Check Complete:", report.summary);

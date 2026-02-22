@@ -31,3 +31,13 @@ export async function getGlobalStats() {
     const { store } = await import('@/lib/store');
     return store.getStats();
 }
+
+export async function registerUserProject(projectId: number, accessToken: string): Promise<void> {
+    const { registerProject } = await import('@/lib/token-store');
+    registerProject(projectId, accessToken);
+}
+
+export async function getUserProjects(): Promise<number[]> {
+    const { getRegisteredProjects } = await import('@/lib/token-store');
+    return getRegisteredProjects();
+}
