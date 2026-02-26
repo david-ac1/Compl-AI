@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import type { NextAuthConfig } from "next-auth";
 
 export const config: NextAuthConfig = {
+    trustHost: true,
     providers: [
         {
             id: "gitlab",
@@ -11,10 +12,7 @@ export const config: NextAuthConfig = {
             clientSecret: process.env.GITLAB_CLIENT_SECRET!,
             authorization: {
                 url: "https://gitlab.com/oauth/authorize",
-                params: {
-                    scope: "read_user read_api",
-                    redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/gitlab`,
-                },
+                params: { scope: "read_user read_api" },
             },
             token: "https://gitlab.com/oauth/token",
             userinfo: "https://gitlab.com/api/v4/user",
