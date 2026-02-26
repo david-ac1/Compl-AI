@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import type { NextAuthConfig } from "next-auth";
 
 export const config: NextAuthConfig = {
+    debug: true,
     trustHost: true,
     providers: [
         {
