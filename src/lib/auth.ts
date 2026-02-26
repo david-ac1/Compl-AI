@@ -1,32 +1,18 @@
 import NextAuth from "next-auth";
 import type { NextAuthConfig } from "next-auth";
+import GitLab from "next-auth/providers/gitlab";
 
 export const config: NextAuthConfig = {
     debug: true,
     trustHost: true,
     providers: [
-        {
-            id: "gitlab",
-            name: "GitLab",
-            type: "oauth",
-            clientId: process.env.GITLAB_CLIENT_ID!,
-            clientSecret: process.env.GITLAB_CLIENT_SECRET!,
+        GitLab({
+            clientId: process.env.GITLAB_CLIENT_ID,
+            clientSecret: process.env.GITLAB_CLIENT_SECRET,
             authorization: {
-                url: "https://gitlab.com/oauth/authorize",
-                params: { scope: "read_user read_api" },
-            },
-            token: "https://gitlab.com/oauth/token",
-            userinfo: "https://gitlab.com/api/v4/user",
-            profile(profile) {
-                return {
-                    id: String(profile.id),
-                    name: profile.name,
-                    email: profile.email,
-                    image: profile.avatar_url,
-                    username: profile.username,
-                };
-            },
-        },
+                params: { scope: "read_user read_api" }
+            }
+        })
     ],
     callbacks: {
         async jwt({ token, account }) {
