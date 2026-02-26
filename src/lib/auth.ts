@@ -10,7 +10,11 @@ export const config: NextAuthConfig = {
             clientId: process.env.GITLAB_CLIENT_ID,
             clientSecret: process.env.GITLAB_CLIENT_SECRET,
             authorization: {
-                params: { scope: "read_user read_api" }
+                params: {
+                    scope: "read_user read_api",
+                    // Fix ERR_INVALID_URL on Vercel by explicitly defining the redirect URI
+                    redirect_uri: `${process.env.AUTH_URL ?? 'https://compl-ai-nu.vercel.app'}/api/auth/callback/gitlab`
+                }
             }
         })
     ],
