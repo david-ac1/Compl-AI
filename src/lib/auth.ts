@@ -2,6 +2,14 @@ import NextAuth from "next-auth";
 import type { NextAuthConfig } from "next-auth";
 import GitLab from "next-auth/providers/gitlab";
 
+// PATCH: next-auth@5 beta crashes with ERR_INVALID_URL on Vercel because it 
+// attempts to use process.env.VERCEL_URL which lacks the 'https://' prefix.
+// By temporarily removing VERCEL from the environment, NextAuth is forced 
+// to use the user-provided AUTH_URL instead.
+if (process.env.VERCEL) {
+    delete process.env.VERCEL;
+}
+
 export const config: NextAuthConfig = {
     debug: true,
     trustHost: true,
